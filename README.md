@@ -9,18 +9,32 @@ This repository contains the machine learning model and API for predicting custo
 ```
 
 Customer\_Churn\_Prediction/
-├── API/                     # API implementation (FastAPI)
-├── models/                  # Model artifacts
-│   └── v1/
-│       ├── model.pkl        # Serialized trained model
-│       ├── features.pkl     # List of features used in training
-│       └── metadata.json    # Model version, metrics, etc.
-├── requirements.txt         # Python dependencies
-└── README.md
+├── api/                      # FastAPI implementation
+│   ├── app.py                # FastAPI application
+│   └── Dockerfile            # Docker configuration
+├── config/                   # Configuration files
+│   └── settings.py           # Project settings
+├── data/                     # Data files
+│   ├── raw/                  # Raw input data
+│   └── processed/            # Cleaned/prepared data
+├── models/                   # ML model artifacts
+│   ├── model.pkl             # Serialized trained model
+│   ├── features.pkl          # Feature names used in training
+│   ├── metadata.json         # Training details and evaluation metrics
+│   └── preprocessor.pkl      # Preprocessing pipeline (e.g., scaler, encoder)
+├── monitoring/               # Monitoring and drift analysis
+│   └── drift\_report.html     # Evidently AI report
+├── notebooks/                # Jupyter notebooks
+│   └── EDA.ipynb             # Exploratory Data Analysis
+├── src/                      # Source code
+│   └── config.py             # Shared configuration logic
+├── tests/                    # Test cases for code and API
+│   └── test\_api.py           # Unit tests for API endpoints
+├── .gitignore                # Git ignore rules
+├── README.md                 # Project documentation
+└── requirements.txt          # Python dependencies
 
-````
-
----
+```
 
 ##  API Deployment with Docker
 
