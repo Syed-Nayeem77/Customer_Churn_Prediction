@@ -1,0 +1,6 @@
+# features.py (example script that creates features.pkl)
+import joblib
+
+# Assuming you have a list of feature names used in training
+feature_names = ['feature1', 'feature2', 'feature3']  # replace with actual features
+joblib.dump(feature_names, 'models/v1/features.pkl')
