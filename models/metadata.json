@@ -1,0 +1,17 @@
+# metadata.py (example script that creates metadata.json)
+import json
+from datetime import datetime
+
+metadata = {
+    "model_version": "v1",
+    "training_date": datetime.now().isoformat(),
+    "algorithm": "RandomForestClassifier",
+    "performance_metrics": {
+        "accuracy": 0.85,
+        "precision": 0.83,
+        "recall": 0.82
+    }
+}
+
+with open('models/v1/metadata.json', 'w') as f:
+    json.dump(metadata, f, indent=2)
