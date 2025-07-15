@@ -1,0 +1,8 @@
+# train.py (example training script that creates model.pkl)
+import joblib
+from sklearn.ensemble import RandomForestClassifier
+
+# Example training code
+model = RandomForestClassifier()
+# ... train model on your data ...
+joblib.dump(model, 'models/v1/model.pkl')
