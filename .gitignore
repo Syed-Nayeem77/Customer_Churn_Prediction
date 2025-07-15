@@ -1,5 +1,4 @@
-__pycache__/
-*.pyc
-data/processed/
-models/
-*.pkl
+models/*/               # Ignore all version directories
+!models/v1/             # Except v1
+!models/README.md       # And documentation
+!models/load_model.py   # And loader utility
