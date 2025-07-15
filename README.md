@@ -1,26 +1,50 @@
 # Telco Churn Prediction Model
 
-This repository contains the machine learning model for predicting customer churn in a telecommunications company.
+This repository contains the machine learning model and API for predicting customer churn in a telecommunications company.
 
 ---
 
-##  Model Structure
-
-The model artifacts are stored in the `models/` directory with the following structure:
+##  Project Structure
 
 ```
 
-models/
-└── v1/
-├── model.pkl         # Serialized trained model (pickle format)
-├── features.pkl      # List of feature names used in training
-└── metadata.json     # Training information (metrics, version, etc.)
+Customer\_Churn\_Prediction/
+├── API/                     # API implementation (FastAPI)
+├── models/                  # Model artifacts
+│   └── v1/
+│       ├── model.pkl        # Serialized trained model
+│       ├── features.pkl     # List of features used in training
+│       └── metadata.json    # Model version, metrics, etc.
+├── requirements.txt         # Python dependencies
+└── README.md
 
 ````
 
 ---
 
-##  Usage
+##  API Deployment with Docker
+
+To build and run the API container:
+
+
+# Build the Docker image
+docker build -t churn-api .
+
+# Run the container (maps port 8000 on host to 8000 in container)
+docker run -p 8000:8000 churn-api
+````
+
+Once running, the API will be available at:
+
+```
+http://localhost:8000
+```
+
+You can send POST requests to the `/predict` endpoint with input data to receive churn predictions.
+
+---
+
+##  Model Usage
 
 ### Loading the Model
 
@@ -37,12 +61,12 @@ input_data = {
     'feature2': value2,
     # ... all required features
 }
-prediction = model.predict(input_data)  # Returns churn probability (0-1)
-````
+prediction = model.predict(input_data)  # Returns churn probability (0–1)
+```
 
 ---
 
-### Required Features
+##  Required Features
 
 The model expects input with the following features (check `features.pkl` for exact list):
 
@@ -51,7 +75,7 @@ The model expects input with the following features (check `features.pkl` for ex
 * Total charges
 * Contract type
 * Payment method
-* ... \[add your actual features]
+* ... \[Add your full list of actual features]
 
 ---
 
@@ -59,34 +83,35 @@ The model expects input with the following features (check `features.pkl` for ex
 
 * Python 3.8+
 
-### Dependencies
-
-* scikit-learn
-* pandas
-* joblib
-
-Install all dependencies with:
-
+### Install Dependencies
 
 pip install -r requirements.txt
 ```
 
+Dependencies include:
 
-
-##  Versioning
-
-Model versions are stored in separate subdirectories (v1, v2, etc.). Each contains:
-
-* The serialized model
-* Feature list
-* Training metadata
+* `scikit-learn`
+* `pandas`
+* `joblib`
 
 ---
 
-##  Training
+##  Model Versioning
 
-To retrain the model:
+Model versions are stored in subdirectories (`v1`, `v2`, etc.) inside the `models/` folder. Each version contains:
+
+* `model.pkl` — the trained model
+* `features.pkl` — the list of features used
+* `metadata.json` — training information and evaluation metrics
+
+---
+
+##  Training the Model
+
+To retrain the model with new data:
 
 
 python train.py
 ```
+
+This will generate new model artifacts under a versioned directory inside `models/`.
