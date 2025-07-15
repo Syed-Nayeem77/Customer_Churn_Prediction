@@ -1,1 +1,15 @@
 curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" -d '{"gender":"Male","SeniorCitizen":0,...}'
+text
+
+### Verification Steps:
+1. Dataset preprocessing:
+   ```python
+   python model/train.py
+(Will create processed data and model)
+
+API test:
+
+bash
+docker build -t churn-api . && docker run -p 8000:8000 churn-api
+bash
+curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" -d '{"gender":"Female","SeniorCitizen":1,...}'
